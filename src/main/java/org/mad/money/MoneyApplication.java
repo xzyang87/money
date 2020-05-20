@@ -23,7 +23,7 @@ public class MoneyApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        var listingPrice = new BigDecimal(100);
+        BigDecimal listingPrice = new BigDecimal(100);
 
         System.out.println(ooApplication.getClass().getName());
         System.out.println(ooApplication.run(listingPrice));

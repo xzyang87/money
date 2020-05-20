@@ -19,8 +19,8 @@ public class FpConfiguration {
             BiFunction<BigDecimal, BigDecimal, BigDecimal> applyTaxFunction,
             CalculateFinalPriceFunction calculateFinalPriceFunction
     ) {
-        var discountRate = new BigDecimal(discountRateString);
-        var taxRate = new BigDecimal(taxRateString);
+        BigDecimal discountRate = new BigDecimal(discountRateString);
+        BigDecimal taxRate = new BigDecimal(taxRateString);
         return generateCurriedCalculateFinalPrice(discountRate, taxRate, applyDiscountFunction, applyTaxFunction, calculateFinalPriceFunction);
     }
 
@@ -31,9 +31,9 @@ public class FpConfiguration {
             BiFunction<BigDecimal, BigDecimal, BigDecimal> applyTax,
             CalculateFinalPriceFunction calculateFinalPriceFunction
     ) {
-        var applyDiscountForAmount = curry(applyDiscount).apply(discountRate);
-        var applyTaxForAmount = curry(applyTax).apply(taxRate);
-        var calculateFinalPriceForListingPrice = curry(calculateFinalPriceFunction)
+        Function<BigDecimal, BigDecimal> applyDiscountForAmount = curry(applyDiscount).apply(discountRate);
+        Function<BigDecimal, BigDecimal> applyTaxForAmount = curry(applyTax).apply(taxRate);
+        Function<BigDecimal, BigDecimal> calculateFinalPriceForListingPrice = curry(calculateFinalPriceFunction)
                 .apply(applyDiscountForAmount)
                 .apply(applyTaxForAmount);
         return calculateFinalPriceForListingPrice;

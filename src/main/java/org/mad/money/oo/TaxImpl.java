@@ -15,7 +15,7 @@ public class TaxImpl implements Tax {
 
     @Override
     public BigDecimal applyTax(BigDecimal amount) {
-        var tax = amount.multiply(rate);
+        BigDecimal tax = amount.multiply(rate);
         return amount.add(tax);
     }
 }

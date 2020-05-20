@@ -15,7 +15,7 @@ public class DiscountImpl implements Discount {
 
     @Override
     public BigDecimal applyDiscount(BigDecimal amount) {
-        var discount = amount.multiply(rate);
+        BigDecimal discount = amount.multiply(rate);
         return amount.add(discount.negate());
     }
 }

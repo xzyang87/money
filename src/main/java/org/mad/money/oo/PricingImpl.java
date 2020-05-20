@@ -16,7 +16,7 @@ public class PricingImpl implements Pricing {
 
     @Override
     public BigDecimal calculateFinalPrice(BigDecimal listingPrice) {
-        var discountedPrice = discount.applyDiscount(listingPrice);
+        BigDecimal discountedPrice = discount.applyDiscount(listingPrice);
         return tax.applyTax(discountedPrice);
     }
 }
